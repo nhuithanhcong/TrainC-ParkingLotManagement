@@ -1,0 +1,7 @@
+# Dev-C++ files
+*.layout
+*.win
+
+# Executable files
+*.exe
+*.o
