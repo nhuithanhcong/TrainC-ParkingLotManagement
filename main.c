@@ -3,8 +3,8 @@
 //#include <>
 
 	int main(){
-		
 	int choice;
+	/*
     while(1) {
         printf("\n--- PARKING MANAGEMENT SYSTEM ---");
 		//menu
