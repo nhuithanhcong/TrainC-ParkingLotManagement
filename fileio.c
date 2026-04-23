@@ -1,5 +1,5 @@
 # include "fileio.h"
-# include <stido.h>
+# include <stdio.h>
 
 void saveToFile( struct Vehicle list[], int count){
 	FILE *f;
@@ -27,12 +27,12 @@ int saveToFile ( struct Vehicle list[]){
 	FILE *f;
 	f = fopen(FILE_PATH, "r");
 	if (f == NULL){
-		printf("ERROR: Can Not Open The File To Save!\n") 
+		printf("ERROR: Can Not Open The File To Save!\n");
 		return 0;
 	}
 	int count = 0; //Bien count nay dung de dem so luong xe trong ham nay (bien nay ko lien quan den các ham khac)
 	// ham while duoi giup doc tung dong du lieu trong file de dem so luong xe cho bien count cho den het file (EOF)
-	while (fscanf(f, "%[^,], %d, %ld, %ld, %lf, %d\n"
+	while (fscanf(f, "%[^,], %d, %ld, %ld, %lf, %d\n",
 	        list[i].licensePlate,
 	        &list[i].vehicleType,
 	        &list[i].entryTime,
