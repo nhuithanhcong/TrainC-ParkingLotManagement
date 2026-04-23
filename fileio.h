@@ -1,4 +1,4 @@
-#indef FILEIO_H
+#ifndef FILEIO_H
 #define FILEIO_H
 
 #include "parking.h" //Toi chua biet nen dung file struct.h hay file parking.h vi ca hai file nay chua du lieu ma toi can cho bai code nay den de 
