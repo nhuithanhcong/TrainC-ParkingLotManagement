@@ -23,11 +23,11 @@ fclose(f);
 printf("Save %d vehicles.\n", count);
 }
 
-int saveToFile ( struct Vehicle list[]){
+int loadFromFile ( struct Vehicle list[] ){
 	FILE *f;
 	f = fopen(FILE_PATH, "r");
 	if (f == NULL){
-		printf("ERROR: Can Not Open The File To Save!\n");
+		printf("ERROR: Can Not Open The File To Load!\n");
 		return 0;
 	}
 	int count = 0; //Bien count nay dung de dem so luong xe trong ham nay (bien nay ko lien quan den các ham khac)
