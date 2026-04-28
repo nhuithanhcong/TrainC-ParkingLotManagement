@@ -1,3 +1,4 @@
+/*
 #ifndef FILEIO_H
 #define FILEIO_H
 
@@ -15,3 +16,4 @@ void saveToFile (struct Vehicle list[], int count );
 int loadFromFile(struct Vehicle list[]);
 
 #endif
+*/
