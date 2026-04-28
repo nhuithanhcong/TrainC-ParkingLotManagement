@@ -1,3 +1,4 @@
+/*
 # include "fileio.h"
 # include <stdio.h>
 
@@ -48,3 +49,4 @@ int saveToFile ( struct Vehicle list[]){
 	printf("Load the data of %d vehicles.\n", count);
 	return count;
 }
+*/

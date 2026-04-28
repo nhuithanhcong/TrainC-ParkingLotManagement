@@ -11,4 +11,6 @@ typedef struct {
 	int status[3636];     // 0: in, 1: out
 	char licensePlate[3636][16];  // khong trung bien so
 } Vehicle;
+
+int isDuplicatelicensePlate(char plates[3636][16], int n, char* newPlate);
 #endif
