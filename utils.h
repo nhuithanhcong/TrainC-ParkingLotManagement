@@ -1,16 +1,29 @@
 #ifndef UTILS_H
 #define UTILS_H
-#define MAX_VEHICLES 3636
+
 #include <time.h>
 
+
 typedef struct {
-	double fee;
-	time_t exitTime[3636];
-	time_t entryTime[3636];
-	int vehicleType[3636]; 	// 0: xe may, 1: oto, 2: xe tai
-	int status[3636];     // 0: in, 1: out
-	char licensePlate[3636][16];  // khong trung bien so
+    char licensePlate[16];
+    time_t entryTime;
+    time_t exitTime;  
+    double fee;
+    int vehicleType;       
+    int status;      
 } Vehicle;
 
-int isDuplicatelicensePlate(char plates[3636][16], int n, char* newPlate);
+
+typedef struct {
+    char typeName[16];
+    double pricePerHour;
+    double minimumFee;
+    int vehicleType;
+} PriceConfig;
+
+
+void clearBuffer();
+void printTime(time_t t);
+int findVehicleIndex(Vehicle *vehicles, int count, const char *plate);
+
 #endif
