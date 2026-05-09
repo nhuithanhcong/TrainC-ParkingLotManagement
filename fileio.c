@@ -1,5 +1,6 @@
 # include "fileio.h"
 # include <stdio.h>
+# include <time.h>
 
 void saveToFile( struct Vehicle list[], int count){
 	FILE *f;
