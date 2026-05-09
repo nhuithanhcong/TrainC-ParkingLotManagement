@@ -1,12 +1,12 @@
 #ifndef PARKING_H
 #define PARKING_H
 
-#include <time.h>
-#include <string.h>
-int addlicensePlate(char licensePlate[3636][16],int n,int vehicleType[3636],time_t entryTime[3636], int status[3636]); //Thêm biển số
+#include "utils.h"
 
-int findlicensePlate(char licensePlate[3636][16],int n,int vehicleType[3636],time_t entryTime[3636],int status[3636]); //Tìm biển số
+void addVehicle(Vehicle *vehicles, int *count); //them xe moi
 
-int display(char licensePlate[3636][16], int n,int vehicleType[3636],time_t entryTime[3636], int status[3636]);      // Hiển thị danh sách
+void searchVehicle(Vehicle *vehicles, int count); //Tìm biển số
+
+void listParkedVehicles(Vehicle *vehicles, int count); //hien thi danh sach xe
 
 #endif

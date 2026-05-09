@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "utils.h"
 #include "parking.h"
 //#include "billing.h"
 //#include "fileio.h"
 //#include "report.h"
-#include "utils.h"
+
+#define MAX_VEHICLES 3636
 
 void displayMenu(){        
 		printf("\n--- PARKING MANAGEMENT SYSTEM ---\n");
@@ -18,37 +21,36 @@ void displayMenu(){
 }
 
 int main(){
+	Vehicle vehicles[MAX_VEHICLES]; //mang quan ly bo nho tap chung
+	int vehicleCount = 0;
 	int choice;
-	char licensePlate[3636][16];
-    int n = 0;
-    int vehicleType[3636];
-    time_t entryTime[3636];
-    int status[3636];
+	
 	// (bo sung) ham load DATA từ file luu tru
+	
     while(1) {
     	displayMenu();
     	if (scanf("%d", &choice) != 1){
     		printf("Vui chi nhap so");
-    		while(getchar() != '\n'); //clear (BUFFER) tranh loi
-    		continue;
+			clearBuffer();
+			continue;
 		}
 
 		switch(choice) {
             case 1:
             	printf("\n--- THEM XE MOI ---\n");
-            	n = addlicensePlate(licensePlate, n, vehicleType, entryTime, status);
+            	addVehicle(vehicles, &vehicleCount);
             	break;
             case 2:
             	printf("\n--- CHO XE RA & TINH TIEN---\n");
-            	// (bo sung) ham trong parking.h & billing.h
+
             	break;
             case 3:
-            	printf("\n--- TIM KIEM XE ---");
-            	findlicensePlate(licensePlate, n, vehicleType, entryTime, status);
+            	printf("\n--- TIM KIEM XE ---\n");
+            	searchVehicle(vehicles, vehicleCount);
             	break;
             case 4:
-            	printf("\n--- Danh Sach Xe ---");
-            	display(licensePlate, n, vehicleType, entryTime, status);
+            	printf("\n=========== List of Vehicle =========== \n");
+				listParkedVehicles(vehicles, vehicleCount);
             	break;
             case 5:
             	printf("Dang luu du lieu va thoat chuong trinh...\n");

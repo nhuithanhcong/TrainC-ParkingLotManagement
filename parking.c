@@ -1,77 +1,77 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 #include <string.h>
 #include "parking.h"
-#include "utils.h"
+//#include "billing.h"
 
-int findlicensePlate(char licensePlate[3636][16], int n, int vehicleType[3636], time_t entryTime[3636], int status[3636]) {
-    char find[16];
+void addVehicle(Vehicle *vehicles, int *count){
+	Vehicle newVehicle;
+	printf("Nhap bien so xe: ");
+	scanf("%15s", newVehicle.licensePlate);
+	clearBuffer();
+	
+	//kiem tra bien so trung
+	if(findVehicleIndex(vehicles, *count, newVehicle.licensePlate) != -1){
+		printf("Loi: xe co bien so %s dang do trong bai!\n", newVehicle.licensePlate);
+		return;
+	}
+	newVehicle.entryTime = time (NULL); // de ghi lai thoi gian hien tai
+	newVehicle.exitTime = 0;
+	newVehicle.fee = 0.0;
+	
+	//printPriceConfig();
+	printf("--- Type: 0:Motorcycle, 1:Car, 2:Truck ---\n");
+	scanf("%d", &newVehicle.vehicleType);
+	clearBuffer();
+	
+	newVehicle.status = 0; // dang do
+	
+	vehicles[*count] = newVehicle;
+	(*count)++;
+	
+	printf(" Them xe %s vao bai thanh cong luc: ", newVehicle.licensePlate);
+	printTime(newVehicle.entryTime);
+	printf("\n");
+}
+
+void searchVehicle(Vehicle *vehicles, int count) {
+    char plate[20];
+    printf("Nhap bien so xe can tim: ");
+    scanf("%19s", plate);
+    clearBuffer();
+
+    printf("\nKet qua tim kiem cho '%s':\n", plate);
     int found = 0;
-    printf("\nEnter license plate to find: ");
-    scanf("%15s", find);
-    for (int i = 0; i < n; i++) {
-        if (strcmp(find, licensePlate[i]) == 0) {
-            found = 1;
-            printf("Found!\n");
-            printf("Type of vehicle: %d\n", vehicleType[i]); 
-            printf("License Plate: %s\n", licensePlate[i]);
-            printf("Entry Time: %s", ctime(&entryTime[i]));
-            printf("Status: %d\n", status[i]);
-            break;
+    for (int i = 0; i < count; i++) {
+        // tim kiem chuoi con (ho tro tim mot phan bien so)
+        if (strstr(vehicles[i].licensePlate, plate) != NULL) {
+            printf("- Bien so: %s | Trang thai: %s | Vao: ", 
+                   vehicles[i].licensePlate, 
+                   vehicles[i].status == 0 ? "Dang do" : "Da ra");
+            printTime(vehicles[i].entryTime);
+            printf("\n");
+            found++;
         }
     }
-    if (found == 0) printf("Not found!\n");
-    return 0;        
+    if (found == 0) printf("Khong tim thay lich su nao.\n");
 }
 
-int addlicensePlate(char licensePlate[3636][16], int n, int vehicleType[3636], time_t entryTime[3636], int status[3636]) {
-    if (n >= 3636) {
-        printf("Error: Parking lot is full!\n");
-        return n;
-    }
 
-    char tempPlate[16];
-    while (1) {
-        printf("Enter license plate: ");
-        scanf("%15s", tempPlate);
-        if (isDuplicatelicensePlate(licensePlate, n, tempPlate)) {
-            printf("Duplicate plate! Try again.\n");
-        } else { 
-            break; 
-        }
-    }
-    
-    strcpy(licensePlate[n], tempPlate);
+void listParkedVehicles(Vehicle *vehicles, int count) {
 
-    printf("--- Type: 0:Motorcycle, 1:Car, 2:Truck ---\n");
-    do {
-        printf("Enter type of vehicle: ");
-        scanf("%d", &vehicleType[n]);
-    } while (vehicleType[n] < 0 || vehicleType[n] > 2);
 
-    do {
-        printf("Status (0:In, 1:Out): ");
-        scanf("%d", &status[n]);
-    } while (status[n] != 0 && status[n] != 1);
-    
-    entryTime[n] = time(NULL);
-    printf("Add successful at: %s", ctime(&entryTime[n]));
-    return n + 1; 
-}
-
-int display(char licensePlate[3636][16], int n, int vehicleType[3636], time_t entryTime[3636], int status[3636]) {
-    if (n == 0) {
-        printf("\nNo vehicles in parking lot.\n");
-        return 0;
-    }
     printf("\n=========== List of Vehicle =========== \n");
-    for (int i = 0; i < n; i++) {
-        printf("[%d] Plate: %s | Type: %d | Status: %d | In: %s", 
-                i + 1, licensePlate[i], vehicleType[i], status[i], ctime(&entryTime[i]));
+    printf("%-15s %-10s %-20s\n", "Bien So", "Loai Xe", "Gio Vao");
+    int found = 0;
+    for (int i = 0; i < count; i++) {
+		if (vehicles[i].status == 0) {
+			printf("%-15s %-10d ", vehicles[i].licensePlate, vehicles[i].vehicleType);
+			printTime(vehicles[i].entryTime);
+			printf("\n");
+			found++;
+		}
     }
+    if (found == 0) printf("No vehicles in parking lot.\n");
     printf("========================================\n");
-    return 0;
 }
 
 
