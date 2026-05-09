@@ -1,10 +1,8 @@
 
-#ifndef 
-#define
-typedef struct{
-int vehicleType;
-char typeName[30];
-double pricePerHour;
-double minimumFee;
-}
+#ifndef BILLING_H
+#define BILLING_H
+#include "utils.h"
+
+void calculateInvoice(Vehicle *v);
+
 #endif
