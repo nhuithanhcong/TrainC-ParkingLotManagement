@@ -45,12 +45,12 @@ int main(){
 
             	break;
             case 3:
-            	printf("\n--- TIM KIEM XE ---");
-
+            	printf("\n--- TIM KIEM XE ---\n");
+            	searchVehicle(vehicles, vehicleCount);
             	break;
             case 4:
-            	printf("\n--- Danh Sach Xe ---");
-
+            	printf("\n=========== List of Vehicle =========== \n");
+				listParkedVehicles(vehicles, vehicleCount);
             	break;
             case 5:
             	printf("Dang luu du lieu va thoat chuong trinh...\n");
