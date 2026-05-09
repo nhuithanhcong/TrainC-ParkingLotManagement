@@ -2,7 +2,7 @@
 # include <stdio.h>
 # include <time.h>
 
-void saveToFile( struct Vehicle list[], int count){
+void saveToFile(Vehicle list[], int count){
 	FILE *f;
 	f = fopen(FILE_PATH, "w");
 	if (f == NULL){
@@ -40,7 +40,7 @@ int loadFromFile ( struct Vehicle list[] ){
 	        &list[i].exitTime,
 	        &list[i].fee,
 	        &list[i].status) != EOF){
-	count++;
+		count++;
 	// Gioi han suc chua cua bai xe
 	if (count >= 3636){
 		break;}    	
