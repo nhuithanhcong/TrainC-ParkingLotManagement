@@ -14,10 +14,8 @@ double totalRevenue(Vehicle list[], int n) {
 }
 
 
-
-
 void exportReport(Vehicle list[], int n) {
-	double total = 0;
+	double total = totalRevenue(list, n);
 	int xemay = 0, oto = 0, xetai = 0;
 	
 	
@@ -27,32 +25,31 @@ void exportReport(Vehicle list[], int n) {
 		return;
 	}
 	
-	fprintf(f, "===== REPORT REVENUE OF PARKING LOT =====\n\n");
-	    fprintf(f, "%-15s %-20s %-20s %-10s %-10s\n",
+	fprintf(f, "===================== REPORT REVENUE OF PARKING LOT =====================\n\n");
+	    fprintf(f, "%-15s %-25s %-25s %-15s %-25s\n",
         "Plate", "Entry Time", "Exit Time", "Type", "Fee");
 
-    fprintf(f, "--------------------------------------------------------------------------\n");
+    fprintf(f, "---------------------------------------------------------------------------------------------------\n");
 	
 	for(int i = 0; i < n; i++) {
 		if(list[i].status == 1) {
-			/*entry + exit time (WIP)
-			char entryStr[32], exitStr[32];
-			strftime ?
-			
-			*/
+
+			char entry[32], exit[32];
+			strftime(entry, sizeof(entry), "%H:%M:%S %d/%m/%y", localtime(&list[i].entryTime)); //strftime: biến tg thành string 
+			strftime(exit, sizeof(exit), "%H:%M:%S %d/%m/%y", localtime(&list[i].exitTime));
 			
 			
 			//vehicle type
 			const char *typeName = (list[i].vehicleType == 0)? "Xe may" : (list[i].vehicleType == 1)? "Oto" : "Xe tai";
 			
-			fprintf(f, "%-15s %-20s %-20s %-10s %-10.0f\n",
+			fprintf(f, "%-15s %-25s %-25s %-15s %-25.0f\n",
 				list[i].licensePlate,
-			//	list[i].entryTime,
-			//	list[i].exitTime,
+				entry,
+				exit,
 				typeName,
 				list[i].fee);
 		
-			total += list[i].fee;
+		
 			if(list[i].vehicleType == 0) xemay++;
 		        else if (list[i].vehicleType == 1) oto++;
 		            else xetai++;
@@ -62,12 +59,12 @@ void exportReport(Vehicle list[], int n) {
 
 		
 		
-	fprintf(f, "--------------------------------------------------------------------------\n\n");
-	fprintf(f, "=====TOTAL VEHICLES=====\n");
+	fprintf(f, "---------------------------------------------------------------------------------------------------\n\n");
+	fprintf(f, "===== TOTAL VEHICLES ====\n");
 	fprintf(f, "  Motorbike : %d\n", xemay);
     fprintf(f, "  Car   	: %d\n", oto);
     fprintf(f, "  Truck 	: %d\n", xetai);
-	fprintf(f, "Total Revenue: %d\n", total);
+	fprintf(f, "Total Revenue: %.1f\n", total);
 	
 	fclose(f);
 	printf("Report is exported successfully!");

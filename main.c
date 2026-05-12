@@ -3,9 +3,9 @@
 
 #include "utils.h"
 #include "parking.h"
-//#include "billing.h"
+#include "billing.h"
 //#include "fileio.h"
-//#include "report.h"
+#include "report.h"
 
 #define MAX_VEHICLES 3636
 
@@ -42,7 +42,7 @@ int main(){
             	break;
             case 2:
             	printf("\n--- CHO XE RA & TINH TIEN---\n");
-
+				calculateInvoice(&vehicles);
             	break;
             case 3:
             	printf("\n--- TIM KIEM XE ---\n");

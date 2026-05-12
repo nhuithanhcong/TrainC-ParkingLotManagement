@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "parking.h"
-//#include "billing.h"
+#include "billing.h"
 
 void addVehicle(Vehicle *vehicles, int *count){
 	Vehicle newVehicle;
@@ -18,7 +18,7 @@ void addVehicle(Vehicle *vehicles, int *count){
 	newVehicle.exitTime = 0;
 	newVehicle.fee = 0.0;
 	
-	//printPriceConfig();
+	//PriceConfig
 	printf("--- Type: 0:Motorcycle, 1:Car, 2:Truck ---\n");
 	scanf("%d", &newVehicle.vehicleType);
 	clearBuffer();
