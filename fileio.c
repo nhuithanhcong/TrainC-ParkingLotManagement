@@ -2,8 +2,6 @@
 # include <stdio.h>
 # include <time.h>
 
-#define FILE_PATH "data.txt"
-
 void saveToFile(Vehicle list[], int count){
 	FILE *f;
 	f = fopen(FILE_PATH, "w");
