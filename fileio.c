@@ -2,6 +2,8 @@
 # include <stdio.h>
 # include <time.h>
 
+#define FILE_PATH "data.txt"
+
 void saveToFile(Vehicle list[], int count){
 	FILE *f;
 	f = fopen(FILE_PATH, "w");
@@ -34,12 +36,12 @@ int loadFromFile ( struct Vehicle list[] ){
 	int count = 0; //Bien count nay dung de dem so luong xe trong ham nay (bien nay ko lien quan den các ham khac)
 	// ham while duoi giup doc tung dong du lieu trong file de dem so luong xe cho bien count cho den het file (EOF)
 	while (fscanf(f, "%[^,], %ld, %ld, %lf, %d, %d\n",
-	        list[i].licensePlate,
-	        &list[i].entryTime,
-	        &list[i].exitTime,
-	        &list[i].fee,
-		    &list[i].vehicleType,
-	        &list[i].status) != EOF){
+	        list[count].licensePlate,
+	        &list[count].entryTime,
+	        &list[count].exitTime,
+	        &list[count].fee,
+		    &list[count].vehicleType,
+	        &list[count].status) != EOF){
 		count++;
 	// Gioi han suc chua cua bai xe
 		if (count >= 3636){
