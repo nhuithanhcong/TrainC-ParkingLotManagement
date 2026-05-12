@@ -1,4 +1,4 @@
-#indef FILEIO_H
+#ifndef FILEIO_H
 #define FILEIO_H
 
 #include "parking.h" //Toi chua biet nen dung file struct.h hay file parking.h vi ca hai file nay chua du lieu ma toi can cho bai code nay den de 
@@ -9,9 +9,9 @@
                                       // bien ma la mot marco).
                                       
 //Luu danh sach xe hien tai vao file text
-void saveToFile (struct Vehicle list[], int count );
+void saveToFile ( Vehicle list[], int count );
 
 //Doc du lieu tu file khi khoi dong chuong trinh
-int loadFromFile(struct Vehicle list[]);
+int loadFromFile( Vehicle list[] );
 
 #endif
