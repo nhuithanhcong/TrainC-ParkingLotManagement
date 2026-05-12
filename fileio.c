@@ -24,7 +24,7 @@ fclose(f);
 printf("Save %d vehicles.\n", count);
 }
 
-int loadFromFile ( struct Vehicle list[] ){
+int loadFromFile ( Vehicle list[] ){
 	FILE *f;
 	f = fopen(FILE_PATH, "r");
 	if (f == NULL){
