@@ -1,3 +1,4 @@
+/*
 # include "fileio.h"
 # include <stdio.h>
 # include <time.h>
@@ -49,3 +50,4 @@ int loadFromFile ( Vehicle list[] ){
 	printf("Load the data of %d vehicles.\n", count);
 	return count;
 }
+*/
