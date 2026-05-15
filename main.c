@@ -4,7 +4,7 @@
 #include "utils.h"
 #include "parking.h"
 #include "fileio.h"
-//#include "report.h"
+#include "report.h"
 
 #define MAX_VEHICLES 3636
 
@@ -15,8 +15,9 @@ void displayMenu(){
 		printf("3. Tim kiem thong tin xe\n");
 		printf("4. Kiem tra phuong tien trong bai\n");
 		printf("5. Luu du lieu va thoat\n");
+		printf("6. Xuat bao cao doanh thu\n");
 		printf("-----------------------------------\n");
-		printf("Chon chuc nang(1-5): ");
+		printf("Chon chuc nang(1-6): ");
 }
 
 int main(){
@@ -55,6 +56,10 @@ int main(){
             	printf("Dang luu du lieu va thoat chuong trinh...\n");
             	saveToFile(vehicles, vehicleCount); //save(overwrite) vehicles.dat from data folder
                 exit(0);
+			case 6:
+            	printf("\n=========== Bao cao doanh thu =========== \n");
+				exportReport(vehicles, vehicleCount);
+            	break;
             default:
             	printf("Lua chon khong hop le. Vui long chon lai!\n");
         }
