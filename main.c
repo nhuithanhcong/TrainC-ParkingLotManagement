@@ -3,7 +3,6 @@
 
 #include "utils.h"
 #include "parking.h"
-#include "billing.h"
 #include "fileio.h"
 //#include "report.h"
 
@@ -42,7 +41,7 @@ int main(){
             	break;
             case 2:
             	printf("\n--- CHO XE RA & TINH TIEN---\n");
-				calculateInvoice(vehicles);
+				checkoutVehicle(vehicles, vehicleCount);
             	break;
             case 3:
             	printf("\n--- TIM KIEM XE ---\n");

@@ -33,10 +33,27 @@ void addVehicle(Vehicle *vehicles, int *count){
 	printf("\n");
 }
 
+
+void checkoutVehicle(Vehicle *vehicles, int count){
+	char plate[16];
+	printf("Nhap bien so xe can cho ra: ");
+	scanf("%15s", plate);
+	clearBuffer();
+	
+	int index = findVehicleIndex(vehicles, count, plate);
+	if (index != -1) {
+		calculateInvoice(&vehicles[index]);
+        printf("Xe %s da thanh toan va roi bai.\n", plate);
+    } else {
+        printf("Loi: Khong tim thay xe co bien so %s dang o trong bai!\n", plate);
+    }
+}
+
+
 void searchVehicle(Vehicle *vehicles, int count) {
-    char plate[20];
+    char plate[16];
     printf("Nhap bien so xe can tim: ");
-    scanf("%19s", plate);
+    scanf("%15s", plate);
     clearBuffer();
 
     printf("\nKet qua tim kiem cho '%s':\n", plate);
@@ -73,5 +90,3 @@ void listParkedVehicles(Vehicle *vehicles, int count) {
     if (found == 0) printf("No vehicles in parking lot.\n");
     printf("========================================\n");
 }
-
-
