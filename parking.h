@@ -5,6 +5,8 @@
 
 void addVehicle(Vehicle *vehicles, int *count); //them xe moi
 
+void checkoutVehicle(Vehicle *vehicles, int count); //cho xe ra tinh tien
+
 void searchVehicle(Vehicle *vehicles, int count); //Tìm biển số
 
 void listParkedVehicles(Vehicle *vehicles, int count); //hien thi danh sach xe
