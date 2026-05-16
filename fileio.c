@@ -21,7 +21,7 @@ for (int i = 0; i < count; i++){
 	        list[i].status);
 }
 fclose(f);
-printf("Save %d vehicles.\n", count);
+printf("Successfully saved data of %d vehicles.\n", count);
 }
 
 int loadFromFile ( Vehicle list[] ){
@@ -33,7 +33,7 @@ int loadFromFile ( Vehicle list[] ){
 	}
 	int count = 0; //Bien count nay dung de dem so luong xe trong ham nay (bien nay ko lien quan den các ham khac)
 	// ham while duoi giup doc tung dong du lieu trong file de dem so luong xe cho bien count cho den het file (EOF)
-	while (fscanf(f, "%[^,], %ld, %ld, %lf, %d, %d\n",
+	while (fscanf(f, "%15[^,], %ld, %ld, %lf, %d, %d\n",
 	        list[count].licensePlate,
 	        &list[count].entryTime,
 	        &list[count].exitTime,
@@ -46,6 +46,6 @@ int loadFromFile ( Vehicle list[] ){
 			break;}    	
 	}
 	fclose(f);
-	printf("Load the data of %d vehicles.\n", count);
+	printf("Loaded data of %d vehicles.\n", count);
 	return count;
 }

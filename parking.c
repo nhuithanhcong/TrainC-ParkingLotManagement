@@ -5,30 +5,38 @@
 
 void addVehicle(Vehicle *vehicles, int *count){
 	Vehicle newVehicle;
-	printf("Nhap bien so xe: ");
-	scanf("%15s", newVehicle.licensePlate);
+	
+	//kiem tra so luong xe trong bai
+	if (*count >= 3636) {
+    printf("Error: Parking lot is full! Cannot add more vehicles.\n");
+    return;
+	}
+
+	printf("Enter license plate: ");
+	scanf(" %15[^\n]", newVehicle.licensePlate);
 	clearBuffer();
 	
 	//kiem tra bien so trung
 	if(findVehicleIndex(vehicles, *count, newVehicle.licensePlate) != -1){
-		printf("Loi: xe co bien so %s dang do trong bai!\n", newVehicle.licensePlate);
+		printf("Error: Vehicle with plate %s is already in the parking lot!\n", newVehicle.licensePlate);
 		return;
 	}
-	newVehicle.entryTime = time (NULL); // de ghi lai thoi gian hien tai
+	newVehicle.entryTime = time (NULL); //ghi lai thoi gian hien tai
 	newVehicle.exitTime = 0;
 	newVehicle.fee = 0.0;
 	
 	//PriceConfig
 	printf("--- Type: 0:Motorcycle, 1:Car, 2:Truck ---\n");
+	printf("Select vehicle type: ");
 	scanf("%d", &newVehicle.vehicleType);
 	clearBuffer();
 	
-	newVehicle.status = 0; // dang do
+	newVehicle.status = 0;
 	
 	vehicles[*count] = newVehicle;
 	(*count)++;
 	
-	printf(" Them xe %s vao bai thanh cong luc: ", newVehicle.licensePlate);
+	printf(" Vehicle %s added successfully at: ", newVehicle.licensePlate);
 	printTime(newVehicle.entryTime);
 	printf("\n");
 }
@@ -36,52 +44,50 @@ void addVehicle(Vehicle *vehicles, int *count){
 
 void checkoutVehicle(Vehicle *vehicles, int count){
 	char plate[16];
-	printf("Nhap bien so xe can cho ra: ");
-	scanf("%15s", plate);
+	printf("Enter license plate for checkout: ");
+	scanf(" %15[^\n]", plate);
 	clearBuffer();
 	
 	int index = findVehicleIndex(vehicles, count, plate);
 	if (index != -1) {
 		calculateInvoice(&vehicles[index]);
-        printf("Xe %s da thanh toan va roi bai.\n", plate);
+        printf("Vehicle %s has paid and left the parking lot.\n", plate);
     } else {
-        printf("Loi: Khong tim thay xe co bien so %s dang o trong bai!\n", plate);
+        printf("Error: Could not find vehicle with plate %s currently in the lot!\n", plate);
     }
 }
 
 
 void searchVehicle(Vehicle *vehicles, int count) {
     char plate[16];
-    printf("Nhap bien so xe can tim: ");
-    scanf("%15s", plate);
+    printf("Enter license plate to search: ");
+    scanf(" %15[^\n]", plate);
     clearBuffer();
 
-    printf("\nKet qua tim kiem cho '%s':\n", plate);
+    printf("\nSearch results for '%s':\n", plate);
     int found = 0;
     for (int i = 0; i < count; i++) {
         // tim kiem chuoi con (ho tro tim mot phan bien so)
         if (strstr(vehicles[i].licensePlate, plate) != NULL) {
-            printf("- Bien so: %s | Trang thai: %s | Vao: ", 
+            printf("- Plate: %s | Status: %s | Entry: ", 
                    vehicles[i].licensePlate, 
-                   vehicles[i].status == 0 ? "Dang do" : "Da ra");
+                   vehicles[i].status == 0 ? "Parked" : "Checked out");
             printTime(vehicles[i].entryTime);
             printf("\n");
             found++;
         }
     }
-    if (found == 0) printf("Khong tim thay lich su nao.\n");
+    if (found == 0) printf("No history found.\n");
 }
 
 
 void listParkedVehicles(Vehicle *vehicles, int count) {
 
-
-    printf("\n=========== List of Vehicle =========== \n");
-    printf("%-15s %-10s %-20s\n", "Bien So", "Loai Xe", "Gio Vao");
+    printf("%-15s %-15s %-20s\n", "License Plate", "Vehicle Type", "Entry Time");
     int found = 0;
     for (int i = 0; i < count; i++) {
 		if (vehicles[i].status == 0) {
-			printf("%-15s %-10d ", vehicles[i].licensePlate, vehicles[i].vehicleType);
+			printf("%-15s %-15d ", vehicles[i].licensePlate, vehicles[i].vehicleType);
 			printTime(vehicles[i].entryTime);
 			printf("\n");
 			found++;

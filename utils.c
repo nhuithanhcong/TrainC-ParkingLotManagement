@@ -17,7 +17,7 @@ void clearBuffer() {
 
 void printTime(time_t t) {
     if (t == 0) {
-        printf("Chua ra");
+        printf("Not checked out yet");
         return;
     }
     struct tm *tm_info = localtime(&t);
@@ -30,7 +30,7 @@ void printTime(time_t t) {
 // Tim vi tri xe theo bien so (tra ve index, neu khong thay tra ve -1)
 
 int findVehicleIndex(Vehicle *vehicles, int count, const char *plate) {
-    for (int i = 0; i < count; i++) {
+    for (int i = count - 1; i >= 0; i--) {
         if (strcmp(vehicles[i].licensePlate, plate) == 0 && vehicles[i].status == 0) {
             return i;
         }

@@ -21,7 +21,7 @@ void exportReport(Vehicle list[], int n) {
 	
 	FILE *f = fopen("report.txt", "w");
 	if(!f) {
-		printf("Cannot create file. \n");
+		printf("Cannot create report file. \n");
 		return;
 	}
 	
@@ -67,5 +67,5 @@ void exportReport(Vehicle list[], int n) {
 	fprintf(f, "Total Revenue: %.1f\n", total);
 	
 	fclose(f);
-	printf("Report is exported successfully!");
+	printf("Report is exported successfully to 'report.txt'!");
 }

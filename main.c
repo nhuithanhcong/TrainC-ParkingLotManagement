@@ -8,16 +8,17 @@
 
 #define MAX_VEHICLES 3636
 
-void displayMenu(){        
-		printf("\n--- PARKING MANAGEMENT SYSTEM ---\n");
-		printf("1. Them xe vao bai\n");
-		printf("2. Cho xe ra va tinh tien\n");
-		printf("3. Tim kiem thong tin xe\n");
-		printf("4. Kiem tra phuong tien trong bai\n");
-		printf("5. Luu du lieu va thoat\n");
-		printf("6. Xuat bao cao doanh thu\n");
+void displayMenu(){
+printf("\n--- PARKING MANAGEMENT SYSTEM ---\n");
+		printf("1. Add vehicle to parking lot\n");
+		printf("2. Checkout and payment\n");
+		printf("3. Search vehicle information\n");
+		printf("4. Check vehicles in parking lot\n");
+		printf("5. Export revenue report\n");
+		printf("6. Save data\n");
+		printf("7. Exit\n");
 		printf("-----------------------------------\n");
-		printf("Chon chuc nang(1-6): ");
+		printf("Select an option (1-7): ");
 }
 
 int main(){
@@ -30,38 +31,42 @@ int main(){
     while(1) {
     	displayMenu();
     	if (scanf("%d", &choice) != 1){
-    		printf("Vui chi nhap so");
+    		printf("Please enter a number only!");
 			clearBuffer();
 			continue;
 		}
 
 		switch(choice) {
             case 1:
-            	printf("\n--- THEM XE MOI ---\n");
+            	printf("\n=========== ADD NEW VEHICLE ===========\n");
             	addVehicle(vehicles, &vehicleCount);
             	break;
             case 2:
-            	printf("\n--- CHO XE RA & TINH TIEN---\n");
+            	printf("\n=========== VEHICLE CHECKOUT & BILLING ===========\n");
 				checkoutVehicle(vehicles, vehicleCount);
             	break;
             case 3:
-            	printf("\n--- TIM KIEM XE ---\n");
+            	printf("\n=========== SEARCH VEHICLE ===========\n");
             	searchVehicle(vehicles, vehicleCount);
             	break;
             case 4:
-            	printf("\n=========== List of Vehicle =========== \n");
+            	printf("\n=========== LIST OF VEHICLES ===========\n");
 				listParkedVehicles(vehicles, vehicleCount);
             	break;
-            case 5:
-            	printf("Dang luu du lieu va thoat chuong trinh...\n");
-            	saveToFile(vehicles, vehicleCount); //save(overwrite) vehicles.dat from data folder
-                exit(0);
-			case 6:
-            	printf("\n=========== Bao cao doanh thu =========== \n");
+			case 5:
+            	printf("\n=========== REVENUE REPORT ===========\n");
 				exportReport(vehicles, vehicleCount);
             	break;
+            case 6:
+            	printf("\n=========== SAVE DATA ===========\n");
+            	saveToFile(vehicles, vehicleCount); //save(overwrite) vehicles.dat from data folder
+            	break;
+            case 7:
+            	printf("\n=========== PRESS ANYTHING TO EXIT ===========\n");
+            	exit(0);
+            	break;
             default:
-            	printf("Lua chon khong hop le. Vui long chon lai!\n");
+            	printf("Invalid choice. Please try again!\n");
         }
     }
 
