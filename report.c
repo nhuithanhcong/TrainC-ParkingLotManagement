@@ -35,7 +35,7 @@ void exportReport(Vehicle list[], int n) {
 		if(list[i].status == 1) {
 
 			char entry[32], exit[32];
-			strftime(entry, sizeof(entry), "%H:%M:%S %d/%m/%y", localtime(&list[i].entryTime)); //strftime: biến tg thành string 
+			strftime(entry, sizeof(entry), "%H:%M:%S %d/%m/%y", localtime(&list[i].entryTime)); //strftime: bien tg thanh string 
 			strftime(exit, sizeof(exit), "%H:%M:%S %d/%m/%y", localtime(&list[i].exitTime));
 			
 			

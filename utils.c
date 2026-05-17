@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include "utils.h"
 
 // Xoa bo dem ban phim tranh troi lenh
@@ -37,4 +38,35 @@ int findVehicleIndex(Vehicle *vehicles, int count, const char *plate) {
     }
     return -1;
 }
-				
+
+// kiem tra bie so xe
+
+int plateChecker(const char *plate) {
+    int len = strlen(plate);
+    //DK1
+    if (len < 5) {
+        return 0;
+    }
+    //DK2
+    if (!isdigit(plate[0]) || !isdigit(plate[1])) {
+        return 0; 
+    }
+    //DK3
+    for (int i = 0; i < len; i++) {
+        if (!isalnum(plate[i]) && plate[i] != '-' && plate[i] != '.') {
+            return 0; 
+        }
+    }
+    //DK4
+	int upper = 0; 
+    for (int i = 0; i < len; i++) {
+        if (isupper(plate[i])) {
+            upper = 1; 
+            break;        
+        }
+    }
+    if (upper == 0) {
+        return 0; 
+    }
+    return 1; 
+}	

@@ -25,5 +25,5 @@ typedef struct {
 void clearBuffer();
 void printTime(time_t t);
 int findVehicleIndex(Vehicle *vehicles, int count, const char *plate);
-
+int plateChecker(const char *plate);
 #endif

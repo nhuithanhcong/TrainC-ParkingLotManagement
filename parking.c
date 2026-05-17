@@ -12,9 +12,18 @@ void addVehicle(Vehicle *vehicles, int *count){
     return;
 	}
 
+while (1) {
 	printf("Enter license plate: ");
 	scanf(" %15[^\n]", newVehicle.licensePlate);
 	clearBuffer();
+	
+	//loc nhung thu khong phai bien so
+	if (plateChecker(newVehicle.licensePlate)) {
+            break; 
+        } else {
+            printf("Error: Invalid license plate format! Please try again.\n\n");
+        }
+	}
 	
 	//kiem tra bien so trung
 	if(findVehicleIndex(vehicles, *count, newVehicle.licensePlate) != -1){
@@ -80,7 +89,6 @@ void searchVehicle(Vehicle *vehicles, int count) {
     printf("\nSearch results for '%s':\n", plate);
     int found = 0;
     for (int i = 0; i < count; i++) {
-        // tim kiem chuoi con (ho tro tim mot phan bien so)
         if (strstr(vehicles[i].licensePlate, plate) != NULL) {
             printf("- Plate: %s | Status: %s | Entry: ", 
                    vehicles[i].licensePlate, 
