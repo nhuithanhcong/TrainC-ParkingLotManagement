@@ -39,7 +39,7 @@ int loadFromFile ( Vehicle list[] ){
 	        &list[count].exitTime,
 	        &list[count].fee,
 		    &list[count].vehicleType,
-	        &list[count].status) != EOF){
+	        &list[count].status) == 6){
 		count++;
 	// Gioi han suc chua cua bai xe
 		if (count >= 3636){

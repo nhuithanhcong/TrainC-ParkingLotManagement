@@ -26,10 +26,23 @@ void addVehicle(Vehicle *vehicles, int *count){
 	newVehicle.fee = 0.0;
 	
 	//PriceConfig
-	printf("--- Type: 0:Motorcycle, 1:Car, 2:Truck ---\n");
-	printf("Select vehicle type: ");
-	scanf("%d", &newVehicle.vehicleType);
-	clearBuffer();
+    while (1) {
+        printf("--- Type: 0:Motorcycle, 1:Car, 2:Truck ---\n");
+        printf("Select vehicle type (0-2): ");    
+ 
+        if (scanf("%d", &newVehicle.vehicleType) != 1) {
+            printf("Error: Invalid input! Please enter a number only.\n\n");
+            clearBuffer(); 
+            continue;
+        }
+        clearBuffer(); 
+
+        if (newVehicle.vehicleType >= 0 && newVehicle.vehicleType <= 2) {
+            break; 
+        } else {
+            printf("Error: Choice out of range! Please select 0, 1, or 2.\n\n");
+        }
+    }
 	
 	newVehicle.status = 0;
 	
