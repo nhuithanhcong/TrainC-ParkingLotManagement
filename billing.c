@@ -17,10 +17,11 @@ v->exitTime = time(NULL);
 double seconds = difftime(v->exitTime, v->entryTime);
 
 double total_hours = seconds/3600.0;
-int charged_hours = (int)ceil(total_hours);
+int charged_hours = ceil(total_hours);
 
 double price = table[v->vehicleType].pricePerHour;
-v->fee = (double)charged_hours * price;
+v->fee = charged_hours * price;
+v->fee = ceil(v->fee / 1000.0)*1000.0;
 
 if (v->fee < table[v->vehicleType].minimumFee){
 v->fee = table[v->vehicleType].minimumFee;
