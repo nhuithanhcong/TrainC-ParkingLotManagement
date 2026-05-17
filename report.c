@@ -21,7 +21,7 @@ void exportReport(Vehicle list[], int n) {
 	
 	FILE *f = fopen("report.txt", "w");
 	if(!f) {
-		printf("Cannot create file. \n");
+		printf("Cannot create report file. \n");
 		return;
 	}
 	
@@ -35,7 +35,7 @@ void exportReport(Vehicle list[], int n) {
 		if(list[i].status == 1) {
 
 			char entry[32], exit[32];
-			strftime(entry, sizeof(entry), "%H:%M:%S %d/%m/%y", localtime(&list[i].entryTime)); //strftime: biến tg thành string 
+			strftime(entry, sizeof(entry), "%H:%M:%S %d/%m/%y", localtime(&list[i].entryTime)); //strftime: bien tg thanh string 
 			strftime(exit, sizeof(exit), "%H:%M:%S %d/%m/%y", localtime(&list[i].exitTime));
 			
 			
@@ -67,5 +67,5 @@ void exportReport(Vehicle list[], int n) {
 	fprintf(f, "Total Revenue: %.1f\n", total);
 	
 	fclose(f);
-	printf("Report is exported successfully!");
+	printf("Report is exported successfully to 'report.txt'!");
 }

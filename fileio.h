@@ -1,8 +1,8 @@
 #ifndef FILEIO_H
 #define FILEIO_H
 
-#include "parking.h" //Toi chua biet nen dung file struct.h hay file parking.h vi ca hai file nay chua du lieu ma toi can cho bai code nay den de 
-                     // tam la parking.h nha.:))))))))))))))))))
+#include "parking.h" 
+
 #include <stdio.h>
 
 #define FILE_PATH "data/vehicles.dat" //phan nay se giup chuong trình tranh gap loi khi chuong trinh doc file (ghi chu: FILE_PATH khong phai la 
