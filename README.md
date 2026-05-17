@@ -23,4 +23,5 @@ Hệ thống quản lý bãi xe đơn giản viết bằng C, hỗ trợ quản 
 
 ## Lệnh Complile & Run
 gcc main.c utils.c parking.c fileio.c billing.c report.c -o ParkingLotManagement.exe
+
 ./ParkingLotManagement.exe
