@@ -20,3 +20,7 @@ Hệ thống quản lý bãi xe đơn giản viết bằng C, hỗ trợ quản 
 ## Yêu cầu hệ thống
 - Trình biên dịch C (GCC/MinGW).
 - IDE khuyến nghị: Dev-C++ hoặc VS Code.
+
+## Lệnh Complile & Run
+gcc main.c utils.c parking.c fileio.c billing.c report.c -o ParkingLotManagement.exe
+./ParkingLotManagement.exe
